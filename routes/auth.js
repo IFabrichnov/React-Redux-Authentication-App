@@ -134,7 +134,7 @@ router.get('/me', async (req, res) => {
   let auth = req.headers.authorization;
 
   let profile = jwt.verify(auth, config.get("jwtSecret"));
-  debugger
+
   const user = await User.findById({_id: profile.userId}).exec();
 
   if (!user) {
@@ -145,13 +145,24 @@ router.get('/me', async (req, res) => {
 
 });
 
+
 //редактирование поста
+//подгрузка по айди именно этого поста в инпут
+router.get('/quotes/:id', async (req,res) => {
+  let id = req.params.id;
+  Article.findById(id, function(err, quote) {
+    res.json(quote);
+  });
+});
+
+//перезапись поста
 router.post('/quote/:id', async (req,res) => {
   Article.findById(req.params.id, function (err, quote) {
+
     if (!quote) {
       res.status(404).send('Нет сообщения');
     } else {
-      quote.quote = req.body.quote;
+      quote.quotes = req.body.quotes;
 
       quote.save().then(quote => {
         res.json('update quote')
@@ -159,15 +170,6 @@ router.post('/quote/:id', async (req,res) => {
     }
   })
 });
-
-router.get('/:id', async (req,res) => {
-  let id = req.params.id;
-  Article.findById(id, function(err, quote) {
-    res.json(quote);
-  });
-});
-
-
 
 
 

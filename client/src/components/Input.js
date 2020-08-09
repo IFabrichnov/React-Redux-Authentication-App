@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {getNewPost} from "../redux/actions/quotesActions";
+import {getNewPost, getUserQuotes} from "../redux/actions/quotesActions";
 
 
 class Input extends Component {
@@ -50,4 +50,4 @@ const mapStateToProps = state => ({
   quotes: state.quotes
 });
 
-export default connect(mapStateToProps, {getNewPost})(Input);
+export default connect(mapStateToProps, {getNewPost, getUserQuotes})(Input);
