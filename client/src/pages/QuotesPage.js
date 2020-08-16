@@ -32,7 +32,7 @@ class QuotesPage extends Component {
 
   render() {
 
-    const {name, quotes} = this.props.quotes;
+    const {name} = this.props.quotes;
 
     return (
       <div className="row">
@@ -41,8 +41,8 @@ class QuotesPage extends Component {
             <div className="card-content gray-text">
               <span>Пользователь: {name}</span>
               <span className="card-title">Цитаты</span>
-              <Input getUserQuotes={this.props.getUserQuotes}/>
-              <QuotesList messages={quotes}/>
+              <Input />
+              <QuotesList />
 
               <button onClick={this.onLogout.bind(this)} className="btn light-blue darken-3">Выход</button>
             </div>

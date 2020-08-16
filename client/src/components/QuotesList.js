@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
+import {getUserQuotes} from "../redux/actions/quotesActions";
 
 //вывод цитат: если сообщение есть, то мапим в li, если нет то выводим текст НЕТ цитат
 class QuotesList extends Component {
+
   render() {
     const {user} = this.props.auth;
     const userParse = JSON.parse(user);
     const userId = userParse.userId;
 
+    const {quotes} = this.props.quotes;
     return (
       <ul>
         {
-          this.props.messages &&
-          this.props.messages.length > 0 ?
+          quotes &&
+          quotes.length > 0 ?
             (
-              this.props.messages.map(messages => {
+              quotes.map(messages => {
 
                 return (
                   <li key={messages._id}>{messages.quotes}
@@ -40,4 +43,4 @@ const mapStateToProps = state => ({
   quotes: state.quotes
 });
 
-export default connect(mapStateToProps)(withRouter(QuotesList));
+export default connect(mapStateToProps, {getUserQuotes})(withRouter(QuotesList));

@@ -1,17 +1,19 @@
 import React, {Component} from "react";
 import axios from 'axios';
 import {connect} from "react-redux";
+import {getEditPost} from "../redux/actions/quotesActions";
 
 class EditPage extends Component {
   constructor() {
     super();
+    this.state = {
+      quote: ''
+    };
 
-    this.onSubmit = this.onSubmit.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  state = {
-    quote: ''
-  };
+
 
   componentDidMount() {
     //подгрузка поста по айди и передача его в инпут
@@ -33,15 +35,16 @@ class EditPage extends Component {
     })
   };
 
-  onSubmit(e) {
+  onSubmit(e)  {
     e.preventDefault();
+    let storageObject = JSON.parse(localStorage.getItem('usertoken'));
+    let tokenString = storageObject.token;
     //запись нового объекта для передачи его на бэк и перезаписи
     const obj = {
       quotes: this.state.quote
     };
 
-    axios.post('/quote/'+this.props.match.params.id, obj)
-      .then(res => console.log(res.data));
+    this.props.getEditPost(obj, this.props.match.params.id, tokenString);
 
     this.props.history.push('/quotes');
   }
@@ -71,4 +74,4 @@ const mapStateToProps = state => ({
   quotes: state.quotes
 });
 
-export default connect(mapStateToProps)(EditPage);
+export default connect(mapStateToProps, {getEditPost})(EditPage);

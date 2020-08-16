@@ -40,7 +40,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  quotes: state.quotes
 });
 
 export default connect(mapStateToProps)(App);

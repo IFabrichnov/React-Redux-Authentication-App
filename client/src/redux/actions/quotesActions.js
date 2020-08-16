@@ -44,4 +44,25 @@ export const getNewPost = (quote, token) => async dispatch => {
 
     })
     .catch(err => console.log(err));
+
+  await axios.get('/quotes', {headers: {Authorization: token}})
+    .then(res => {
+      dispatch(getUserQuotesAction(res.data))
+    })
+    .catch(err => console.log(err));
 };
+
+//редактирование поста
+export const getEditPost = (quote, id, token) => async dispatch => {
+
+  await axios.post('/quote/'+id, quote)
+    .then(res => console.log(res.data));
+
+  await axios.get('/quotes', {headers: {Authorization: token}})
+    .then(res => {
+      dispatch(getUserQuotesAction(res.data))
+    })
+    .catch(err => console.log(err));
+};
+
+

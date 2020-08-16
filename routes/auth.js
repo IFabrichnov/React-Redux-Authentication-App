@@ -157,7 +157,7 @@ router.get('/quotes/:id', async (req,res) => {
 
 //перезапись поста
 router.post('/quote/:id', async (req,res) => {
-  Article.findById(req.params.id, function (err, quote) {
+ await Article.findById(req.params.id, function (err, quote) {
 
     if (!quote) {
       res.status(404).send('Нет сообщения');
@@ -170,7 +170,5 @@ router.post('/quote/:id', async (req,res) => {
     }
   })
 });
-
-
 
 module.exports = router;
