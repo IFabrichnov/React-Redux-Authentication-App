@@ -286,7 +286,7 @@ module.exports = model('User', schema);
 
 Как для входа, как и для отрисовки сообщений были созданы разные файлы.
 
-###redux/actions/authActions
+**redux/actions/authActions**
 Экшенкреейторы для авторизации
 
 ```react
@@ -330,7 +330,7 @@ export const logoutUser = (history) => dispatch => {
 
 ```
 
-###redux/actions/quotesActions
+**redux/actions/quotesActions**
 Экшенкреейторы для сообщений
 
 ```react
@@ -401,7 +401,8 @@ export const getEditPost = (quote, id, token) => async dispatch => {
     .catch(err => console.log(err));
 };
 ```
-###Reducers
+
+**Reducers**
 **authReducers.js**
 Редьюсер авторизации.
 ```react
