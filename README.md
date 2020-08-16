@@ -1,4 +1,4 @@
-# Приложение регистрации, авторизации и отправки сообщений (React, Redux)
+# Приложение регистрации, авторизации, отправки сообщений и их редактирование(React, Redux)
 
 ![1](https://github.com/IFabrichnov/React-Redux-Authentication-App/raw/master/README-IMG/1.gif)
 
